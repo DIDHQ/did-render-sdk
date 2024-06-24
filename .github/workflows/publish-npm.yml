@@ -23,16 +23,10 @@ jobs:
       - name: Install dependencies
         run: pnpm i -r
 
-      - name: Cd to packages/sdk
-        run: cd packages/sdk
-
       - name: Build your package
         run: pnpm run build
 
-      - name: path
-        run: pwd
-
       - name: Publish to npm
-        run: pnpm publish --no-git-checks
+        run: cd packages/sdk && pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
