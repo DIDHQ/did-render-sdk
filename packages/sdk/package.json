@@ -1,6 +1,6 @@
 {
   "name": "@didhq/did-render-sdk",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "DID render SDK",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
