@@ -1,5 +1,4 @@
-import type { BytesLike } from '@ckb-lumos/codec'
-import { bytify } from '@ckb-lumos/codec/lib/bytes'
+import { BytesLike, bytify } from "./bytify";
 
 const PREFIX_SIZE = 1
 const VER_SIZE = 1
@@ -24,7 +23,7 @@ function toHex(buf: Uint8Array)
     return hexOctets.join("");
 }
 
-interface DidData {
+export interface DidData {
     account: string, expireAt: number, witnessHash: string
 }
 
