@@ -5,7 +5,7 @@ export function renderDidToSvg(account: string, expireAt: Date) {
         nameFontSize = 16
     }
     const year = expireAt.getFullYear()
-    const month = expireAt.getMonth().toString().padStart(2, '0')
+    const month = (expireAt.getMonth() + 1).toString().padStart(2, '0')
     const day = expireAt.getDate().toString().padStart(2, '0')
     let dateString = `${year}-${month}-${day}`
     let dateColor = 'rgba(124,132,153,0.8)'
