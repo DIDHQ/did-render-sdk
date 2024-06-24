@@ -90,6 +90,9 @@ importers:
 
   packages/sdk:
     dependencies:
+      '@ckb-lumos/codec':
+        specifier: ^0.23.0
+        version: 0.23.0
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -373,6 +376,20 @@ packages:
       '@babel/helper-validator-identifier': 7.24.5
       to-fast-properties: 2.0.0
     dev: true
+
+  /@ckb-lumos/bi@0.23.0:
+    resolution: {integrity: sha512-KAy+lyVpL+Al4XD+c9tHrA9DSpHkMusyXtTS81aNZi5MyL6F9jrVmFcqLorhfyfl8Fsv2sEjMe5Neo2Y+w/RJQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      jsbi: 4.3.0
+    dev: false
+
+  /@ckb-lumos/codec@0.23.0:
+    resolution: {integrity: sha512-FwYooXnsFDjlHHnlFnCTB1UbBzV72I0VjkRpeauFk5nQ4+/75xl28ywK3J14M+0aHTnYU9msXUTRDAGqC0CaNQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@ckb-lumos/bi': 0.23.0
+    dev: false
 
   /@esbuild/aix-ppc64@0.19.12:
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -3662,6 +3679,10 @@ packages:
     dependencies:
       argparse: 2.0.1
     dev: true
+
+  /jsbi@4.3.0:
+    resolution: {integrity: sha512-SnZNcinB4RIcnEyZqFPdGPVgrg2AcnykiBy0sHVJQKHYeaLUvi3Exj+iaPpLnFVkDPZIV4U0yvgC9/R4uEAZ9g==}
+    dev: false
 
   /jsesc@0.5.0:
     resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}

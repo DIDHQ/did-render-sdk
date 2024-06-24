@@ -1,6 +1,6 @@
 {
   "name": "@didhq/did-render-sdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "DID render SDK",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -33,6 +33,7 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
+    "@ckb-lumos/codec": "^0.23.0",
     "typescript": "^5.2.2"
   },
   "publishConfig": {
