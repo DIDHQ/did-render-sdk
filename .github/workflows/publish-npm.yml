@@ -29,6 +29,9 @@ jobs:
       - name: Build your package
         run: pnpm run build
 
+      - name: path
+        run: pwd
+
       - name: Publish to npm
         run: pnpm publish --no-git-checks
         env:
