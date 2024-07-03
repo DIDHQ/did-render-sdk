@@ -9,8 +9,12 @@ function nameToSize(name: string): {
   for (const char of new GraphemeSplitter().iterateGraphemes(name)) {
     if (emojiRegex().test(char)) {
       length += 2.5
-    } else {
+    } else if (char === 'w' || char === 'm') {
+      length += 1.3
+    } else if (/[a-z]/.test(char)) {
       length += 1
+    } else {
+      length += 2
     }
   }
   let res = {
