@@ -1,21 +1,48 @@
-export function renderDidToSvg(account: string, expireAt: Date) {
-    const name = account.replace('.bit', '')
-    let nameFontSize = 22
-    if (name.length >= 14) {
-        nameFontSize = 16
-    }
-    const year = expireAt.getFullYear()
-    const month = (expireAt.getMonth() + 1).toString().padStart(2, '0')
-    const day = expireAt.getDate().toString().padStart(2, '0')
-    let dateString = `${year}-${month}-${day}`
-    let dateColor = 'rgba(124,132,153,0.8)'
-    const now = new Date()
-    if (now > expireAt)  {
-        dateString = 'Expired'
-        dateColor = '#FFECBC'
-    }
+import GraphemeSplitter from 'grapheme-splitter'
+import emojiRegex from 'emoji-regex'
 
-    const svgCode = `<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg"
+function nameToSize(name: string): {
+  isMultiline: boolean
+  fontSize: number
+} {
+  let length = 0
+  for (const char of new GraphemeSplitter().iterateGraphemes(name)) {
+    if (emojiRegex().test(char)) {
+      length += 2.5
+    } else {
+      length += 1
+    }
+  }
+  let res = {
+    isMultiline: true,
+    fontSize: 4,
+  }
+  if (length <= 6) {
+    res.fontSize = 20
+    res.isMultiline = false
+  } else if (length <= 10) {
+    res.fontSize = 18
+  } else if (length <= 50) {
+    res.fontSize = Math.floor(18000 / length) / 100
+  }
+  return res
+}
+
+export function renderDidToSvg(account: string, expireAt: Date) {
+  const name = account.replace('.bit', '')
+  const { isMultiline, fontSize: nameFontSize } = nameToSize(name)
+  const year = expireAt.getFullYear()
+  const month = (expireAt.getMonth() + 1).toString().padStart(2, '0')
+  const day = expireAt.getDate().toString().padStart(2, '0')
+  let dateString = `${year}-${month}-${day}`
+  let dateColor = 'rgba(124,132,153,0.8)'
+  const now = new Date()
+  if (now > expireAt) {
+    dateString = 'Expired'
+    dateColor = '#FFECBC'
+  }
+
+  const svgCode = `<svg width="250" height="250" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink">
     <rect width="250" height="250" fill="white" />
     <g transform="translate(2,7)">
@@ -229,9 +256,9 @@ export function renderDidToSvg(account: string, expireAt: Date) {
                 fill="#FFECBC" />
         </g>
 
-        <foreignObject x="73" y="116" width="104" height="63">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter';font-size:${nameFontSize}px;font-weight:600;line-height:100%;text-align:center;color:#FFECBC;width:100%;"> 
-                <span style="word-break:break-all;text-wrap:wrap;">${name}</span><span style="word-break:keep-all;">.bit</span>
+        <foreignObject x="66" y="116" width="114" height="63">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:${nameFontSize}px;padding:2px 0;font-weight:600;line-height:100%;text-align:center;color:#FFECBC;width:100%;"> 
+                <span style="white-space:nowrap;line-height:100%;${isMultiline ? 'display:block;' : ''}">${name}</span><span style="word-break:keep-all;line-height:100%;${isMultiline ? 'display:block;' : ''}">.bit</span>
             </div>
         </foreignObject>
 
@@ -242,7 +269,7 @@ export function renderDidToSvg(account: string, expireAt: Date) {
                 fill="#FFECBC" />
         </g>
         <foreignObject x="105" y="196" width="38" height="7">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'SF Pro';font-size:6px;font-weight:860;line-height:7px;color:${dateColor};text-align:center;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:6px;font-weight:860;line-height:7px;color:${dateColor};text-align:center;">
                 ${dateString}
             </div>
         </foreignObject>
@@ -282,6 +309,5 @@ export function renderDidToSvg(account: string, expireAt: Date) {
 
 </svg>`
 
-    return  svgCode
+  return svgCode
 }
-

@@ -1,6 +1,6 @@
 {
   "name": "@didhq/did-render-sdk",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "DID render SDK",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "@ckb-lumos/codec": "^0.23.0",
+    "emoji-regex": "^10.3.0",
+    "grapheme-splitter": "^1.0.4",
     "typescript": "^5.2.2"
   },
   "publishConfig": {
