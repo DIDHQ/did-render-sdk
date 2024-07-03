@@ -10,8 +10,8 @@ function nameToSize(name: string): {
     if (emojiRegex().test(char)) {
       length += 2.5
     } else if (char === 'w' || char === 'm') {
-      length += 1.3
-    } else if (/[a-z]/.test(char)) {
+      length += 1.4
+    } else if (/[0-9a-z]/.test(char)) {
       length += 1
     } else {
       length += 2
@@ -19,7 +19,7 @@ function nameToSize(name: string): {
   }
   let res = {
     isMultiline: true,
-    fontSize: 4,
+    fontSize: 3.6,
   }
   if (length <= 6) {
     res.fontSize = 20
@@ -260,8 +260,8 @@ export function renderDidToSvg(account: string, expireAt: Date) {
                 fill="#FFECBC" />
         </g>
 
-        <foreignObject x="66" y="116" width="114" height="63">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:${nameFontSize}px;padding:2px 0;font-weight:600;line-height:100%;text-align:center;color:#FFECBC;width:100%;"> 
+        <foreignObject x="66" y="116" width="1140" height="630" transform="scale(0.1)" transform-origin="66 116">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:${nameFontSize * 10}px;padding:2px 0;font-weight:600;line-height:100%;text-align:center;color:#FFECBC;width:100%;"> 
                 <span style="white-space:nowrap;line-height:100%;${isMultiline ? 'display:block;' : ''}">${name}</span><span style="word-break:keep-all;line-height:100%;${isMultiline ? 'display:block;' : ''}">.bit</span>
             </div>
         </foreignObject>
@@ -272,8 +272,8 @@ export function renderDidToSvg(account: string, expireAt: Date) {
                 d="M1.15727 0.856201C0.884336 0.856201 0.634888 0.957042 0.444087 1.12316C0.215072 1.32219 0.0703125 1.61569 0.0703125 1.94316V4.93229H4.35546C4.60609 3.50376 5.85289 2.4184 7.35303 2.4184C8.85317 2.4184 10.1 3.50376 10.3506 4.93229H14.6355V1.94316C14.6355 1.34289 14.1488 0.856201 13.5486 0.856201H1.15727ZM0.0703125 6.01925H4.36047C4.6223 7.43404 5.86263 8.50535 7.35303 8.50535C8.84343 8.50535 10.0838 7.43404 10.3456 6.01925H14.6355V9.00838C14.6355 9.60864 14.1488 10.0953 13.5486 10.0953H1.15727C0.557002 10.0953 0.0703125 9.60864 0.0703125 9.00838V6.01925ZM5.179 5.46299C5.179 4.26224 6.15238 3.28908 7.35291 3.28908C8.55345 3.28908 9.52682 4.26224 9.52682 5.46299C9.52682 6.66374 8.55345 7.6369 7.35291 7.6369C6.15238 7.6369 5.179 6.66374 5.179 5.46299Z"
                 fill="#FFECBC" />
         </g>
-        <foreignObject x="105" y="196" width="38" height="7">
-            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:6px;font-weight:860;line-height:7px;color:${dateColor};text-align:center;">
+        <foreignObject x="90" y="196" width="136" height="14" transform="scale(0.5)" transform-origin="90 196">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:'Inter','SF Pro',sans-serif;font-size:12px;font-weight:860;line-height:14px;color:${dateColor};text-align:center;">
                 ${dateString}
             </div>
         </foreignObject>
